@@ -1,0 +1,52 @@
+html {
+    font-family: 'Lato', sans-serif;
+	font-size: 14px;
+	background-color: #EEEEEE; /* значения компонент цвета одинаковы (например: #D6D6D6), 
+	                              то получится серый оттенок. чем больше тем светлее */
+}
+
+/* По типу элемента */
+body { 
+  width: 1400px; /* ширина */
+  border: 3px solid red;
+}
+
+/* По имени класса */
+.header_wrapper {
+	color: blue;
+    text-align: left;
+	background-color: #FFFFFF;
+	border: 1px solid black;
+}
+
+.page_logo {
+    float: left;
+    position: relative;
+	border: 1px solid black;
+}
+
+.gelicon_header1 {
+	color: Blue;
+    text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	background-color: #DDDDDD;
+	border: 1px solid black;
+}
+
+/* По имени класса */
+.main_window1 {
+	color: black;
+    text-align: left;
+	background-color: #AAAAAA;
+}
+
+.grid_header1 {
+	color: red;
+    text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 4px;
+	background-color: #DDDDDD;
+}

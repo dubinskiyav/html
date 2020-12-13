@@ -1,0 +1,29 @@
+/* Селектор(ы) по типу элементо */
+p,h1 {
+  color: red;
+}
+/* Селектор(ы) по типу id
+     когда так <div id="help"> ... </div>
+ */
+#help {
+  color: yellow;
+}
+
+/* Селектор класса
+     когда так <p class="my-class"> и <a class="my-class">
+ */
+.my-class {
+  color: magenta;
+}
+/* Селектор атрибута
+     Выбирает <img src="myimage.png"> но не <img>
+ */
+img[src] {
+  color: white;
+}
+/* Селектор псевдо-класса
+     Выбирает <a>, но только тогда, когда указатель мыши наведен на ссылку
+ */
+a:hover {
+  color: black;
+}

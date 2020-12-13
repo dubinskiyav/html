@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="description" content="Всплывающая подсказка">
+  <title>Всплывающая подсказка</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Noto+Sans+JP&family=Open+Sans&display=swap" rel="stylesheet">
+  <style type="text/css">
+	#floatTip {
+		position: absolute; 
+		width: 250px; 
+		display: none; 
+		border: 1px solid #000; 
+		padding: 5px;
+		font-family: sans-serif; 
+		font-size: 9pt;
+		color: #333;  
+		background: #ECF5E4;    
+		opacity: 0.85; /* Прозрачность слоя */
+   }
+  </style>
+  <script>
+  function testMsg(msg) { // Меняет текст
+	if (msg) {
+      document.getElementById("message_01").innerHTML = msg;
+	} else {
+      document.getElementById("message_01").innerHTML = 'Пися';
+	}
+  }
+  </script>
+  <script type="text/javascript" src="scripts/bloks02.js"></script>
+ </head>
+<body>
+	<p><img src="images/shkant.jpg" alt="Шкант" width="300"
+		onmouseover="testMsg('Жопа')" 
+		onmouseout="testMsg()"
+	/></p>
+	<div id="message_01">Наведи мышь на картинку</div>
+	<p><img src="images/shkant.jpg" alt="Шкант" width="300"
+		onmouseover="toolTip('Эти шканты очень крутые')"
+		onmouseout="toolTip()"
+	/></p>
+	<div id="floatTip"></div>
+</body>
+</html>
