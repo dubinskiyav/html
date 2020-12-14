@@ -15,40 +15,38 @@
 		background: #e3e8cc; /* Цвет фона */
 		overflow: hidden; /* Отменяем действие float */
 	}
-	.header-left-block { /* Левая часть заголовка */
+	.header_left_block { /* Левая часть заголовка */
 		1height: 20px;
 		background: #e3e8cc; /* Цвет фона */
 		padding: 5px; /* Поля */
 		border: solid 1px black; /* Параметры рамки */
 		background: #e3e8cc; /* Цвет фона */
-		1width: 300px;
-		float: left; /* Состыковка с другим слоем по горизонтали */
-		1overflow: hidden; /* Отменяем действие float */
-	}
-	.header-item-left {
 		float: left; /* Состыковка с другим слоем по горизонтали */
 	}
-	.header-right-block { /* Левая часть заголовка */
+	.header_item_left {
+		float: left; /* Состыковка с другим слоем по горизонтали */
+	}
+	.header_right_block { /* Левая часть заголовка */
 		1height: 20px;
 		background: #e3e8cc; /* Цвет фона */
 		padding: 5px; /* Поля */
 		border: solid 2px blue; /* Параметры рамки */
 		background: #e3e8cc; /* Цвет фона */
-		1width: 300px;
 		float: right;
-		1overflow: hidden; /* Отменяем действие float */
 	}
-	.header-item-right {
+	.header_item_right {
 		float: right; /* Состыковка с другим слоем по горизонтали */
 	}
-	.global-menu { /* Глобальное меню */
+	.global_menu { /* Глобальное меню */
 		background: DarkBlue;
 		color: white;
+		1min-height: 20px;
 	}
-	.main-menu { /* Главное меню */
+	.main_menu { /* Главное меню */
 		1height: 20px;
 		background: LightGray; 
 		1overflow: hidden; /* Отменяем действие float */
+		min-height: 20px;
 	}
 	.dropdown {
 		position: relative;
@@ -59,7 +57,7 @@
 		padding: 4px;
 		border: none;
 	}
-	.dropdown-content {
+	.dropdown_content {
 		display: none;
 		position: absolute;
 		background-color: #f1f1f1;
@@ -67,48 +65,154 @@
 		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 		z-index: 1;
 	}
-	.dropdown-content a {
+	.dropdown_content a {
 		color: black;
 		padding: 4px 10px;
 		text-decoration: none;
 		display: block;
 	}
-	.dropdown-content a:hover {background-color: #ddd;}
-	.dropdown:hover .dropdown-content {display: block;}
+	.dropdown_content a:hover {background-color: #ddd;}
+	.dropdown:hover .dropdown_content {display: block;}
 	.dropdown:hover .dropbtn {background-color: Cyan;}
-  </style> 
+	.global_menu ul {
+		list-style: none; /*убираем маркеры списка*/
+		margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
+		padding-left: 0; /*убираем левый отступ, равный 40px*/
+		1overflow: hidden;
+	}
+	.global_menu a {
+		text-decoration: none; /*убираем подчеркивание текста ссылок*/
+		color: white;
+	}
+	.global_menu li {
+		1display: inline;
+		display: inline-block;
+		1float: left;
+	}
+	.global_menu li:after {
+		content: "|";
+		color: red;
+		display: inline-block;
+		vertical-align:top;
+	}
+	.global_menu li:last-child:after {content: none;}
+	.global_menu a:hover {color: red;}
+	#footer {
+		position: fixed; /* Фиксированное положение */
+		left: 5; bottom: 0; /* Левый нижний угол */
+		background: Gainsboro; /* Цвет фона */
+		color: black;
+		width: calc(100% - 15px);
+		height: 20px;
+		overflow: hidden; /* Отменяем действие float */
+	}
+	#footer_message_box {
+		float: left; /* Состыковка с другим слоем по горизонтали */
+		background: yellow; /* Цвет фона */
+		width: 400px;
+	}
+ </style> 
+  <script>
+	function footer_message_boxText(msg) {
+		document.getElementById('footer_message_box').textContent = msg;
+	};
+  </script>
+  <script>
+	function buttonMainClick() {
+		alert('Главная!');
+	};
+	function buttonCatalogClick() {
+		alert('Справочники!');
+	};	
+	function button_moduleClick() {
+		alert('Модули!');
+	};	
+	function buttonSettingClick() {
+		alert('Настройки!');
+	};	
+	function buttonAnalizClick(event) {
+		alert('Анализ события: ' + event.type + " на " + event.currentTarget 
+		+ " Координаты: " + event.clientX + ":" + event.clientY);
+	};	
+	document.addEventListener("DOMContentLoaded", function() {
+		buttonCatalog.addEventListener("click", buttonCatalogClick);
+		document.getElementById("button-setting").addEventListener("click", buttonSettingClick);
+	});
+	window.addEventListener('load',function(){
+		document.getElementById("button_module").addEventListener("click", button_moduleClick);
+		document.getElementById("button_analiz").addEventListener("click", buttonAnalizClick);
+		document.getElementById("menu_analiz").addEventListener("click", buttonAnalizClick);
+	});
+	function refreshMain() {
+		var current_datetime = new Date();
+		footer_message_boxText('Перевыбрано ' + current_datetime);
+	};	
+	document.addEventListener("DOMContentLoaded", function() {
+		menu_item_refresh.addEventListener("click", refreshMain);
+	});
+  </script>
  </head>
  <body>
 	<div class="header">
-		<div class="header-left-block">	
-			<div class="header-item-left">Геликон</div>
-			<div class="header-item-left">Продукты</div>
+		<div class="header_left_block">	
+			<div class="header_item_left">Геликон</div>
+			<div class="header_item_left">Продукты</div>
 		</div>
-		<div class="header-right-block">
-			<div class="header-item-right">Выйти</div>
-			<div class="header-item-right">Пользователь</div>
-			<div class="header-item-right">Помощь</div>
-			<div class="header-item-right">Настройка</div>
+		<div class="header_right_block">
+			<div class="header_item_right">Выйти</div>
+			<div class="header_item_right">Пользователь</div>
+			<div class="header_item_right">Помощь</div>
+			<div class="header_item_right">Настройка</div>
 		</div>
 	</div>
-	<div class="global-menu">
-		<button>Главная</button>
-		<button>Справочники</button>
-		<button>Модули</button>
-		<button>Настройки</button>
-		<button>Бизнес анализ</button>
+	<div class="global_menu">
+		<button id="buttonMain" onclick="buttonMainClick()">Главная</button>
+		<button id="buttonCatalog">Справочники</button>
+		<button id="button_module">Модули</button>
+		<button id="button-setting">Настройки</button>
+		<button id="button_analiz">Бизнес анализ</button>
 	</div>
-	<div class="main-menu">
+	<div class="global_menu">
+		<ul>
+			<li><a href="">Главная</a></li>
+			<li><a id="catalog-global_menu" href="">Справочники</a></li>
+			<li><a href="">Модули</a></li>
+			<li><a href="">Настройки</a></li>
+			<li id="menu_analiz"><a href="">Бизнес анализ</a></li>
+		</ul>
+	</div>
+	<div class="main_menu">
 		<div class="dropdown">
 			<button class="dropbtn">Команды</button>
-			<div class="dropdown-content">
+			<div class="dropdown_content">
 				<a href="#">Добавить</a>
 				<a href="#">Изменить</a>
 				<a href="#">Удалить</a>
-				<a href="#">Обновить</a>
+				<a id="menu_item_refresh" href="#">Обновить</a>
 				<a href="#">Печать</a>
 				<a href="#">Выход</a>
 			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Просмотр</button>
+			<div class="dropdown_content">
+				<a href="#">Фильтр</a>
+				<a href="#">Найти</a>
+				<a href="#">Заменить</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Справка</button>
+			<div class="dropdown_content">
+				<a href="#">Обучающее видео</a>
+				<a href="#">Быстрый старт</a>
+				<a href="#">О программе</a>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div id="footer_message_box">	
+			Геликон
 		</div>
 	</div>
  </body>
