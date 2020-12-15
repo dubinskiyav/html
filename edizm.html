@@ -226,8 +226,14 @@
 		tbl.style.width  = '100%';
 		tbl.style.border = '1px solid black';
 		tbl.setAttribute("class","master_table");
-		//tbl.style.border-collapse = 'collapse'; // не работает почему-то
-		
+		var caption = tbl.createCaption();
+		caption.innerHTML = "Единицы измерения";
+		var tr = tbl.insertRow(); // Создаем строку-заголовок
+		tr.insertCell().outerHTML = "<th>Код</th>";
+		tr.insertCell().outerHTML = "<th>Обозначение</th>";
+		tr.insertCell().outerHTML = "<th>Наименование</th>";
+
+		// Массив единиц измерения
 		var edizmArray = [
 			['ГК', 'ГК', 'Гигакалория'],
 			['квт.ч', 'квт.ч', 'Киловат, час'],
@@ -240,24 +246,6 @@
 			['т', 'тн', 'Тонна'],
 			['шт', 'штук', 'Штук']
 		];
-
-/*
-head = table.append("tr");
-    head.append("th").text("column_header_1");
-    head.append("th").text("column_header_2");
-*/
-
-/*
-		var tr = tbl.insertRow(); // Создаем строку-заголовок
-		//var th = tr.insertCell();
-		var th = tr.appendChild(document.createElement('th'));
-		th.innerHtml = '<b>th cell1</b>';
-		th = tr.insertCell();
-		th.appendChild(document.createTextNode('Обозначение'));
-		th = tr.insertCell();
-		th.appendChild(document.createTextNode('Наименование'));
-*/
-		
 		for (var i = 0; i < edizmArray.length; i++) { // Цикл по строкам
 			var tr = tbl.insertRow(); // Создаем строку
 			for (var j = 0; j < edizmArray[i].length; j++) {
@@ -266,16 +254,35 @@ head = table.append("tr");
                 td.style.border = '1px solid black';
 			}
 		}
-		//body.appendChild(tbl);
 		var master_table = document.getElementById("master_table");
 		var main_table_panel = document.getElementById("main_table_panel");
 		var master_tableNew = main_table_panel.replaceChild(tbl, master_table);
 		
-		//document.getElementById("master_table").innerHTML = tbl;
-		//document.getElementById("master_table") = tbl;
-		
 		var current_datetime = new Date();
 		footer_message_boxText('Обновлено ' + current_datetime);
+		
+	};	
+	function refreshMainDB() {
+		footer_message_boxText('Обновление...');
+		
+		var body = document.body;
+        var tbl  = document.createElement('table');
+		tbl.style.width  = '100%';
+		tbl.style.border = '1px solid black';
+		tbl.setAttribute("class","master_table");
+		var caption = tbl.createCaption();
+		caption.innerHTML = "Единицы измерения";
+		var tr = tbl.insertRow(); // Создаем строку-заголовок
+		tr.insertCell().outerHTML = "<th>Код</th>";
+		tr.insertCell().outerHTML = "<th>Обозначение</th>";
+		tr.insertCell().outerHTML = "<th>Наименование</th>";
+		
+		var master_table = document.getElementById("master_table");
+		var main_table_panel = document.getElementById("main_table_panel");
+		var master_tableNew = main_table_panel.replaceChild(tbl, master_table);
+		
+		var current_datetime = new Date();
+		footer_message_boxText('Обновлено из БД ' + current_datetime);
 		
 	};	
 	document.addEventListener("DOMContentLoaded", function() {
@@ -369,6 +376,7 @@ head = table.append("tr");
 		<button class="button_action" id="button_edit"><img src="images/button_edit.png" alt="Изменить" onmouseout="elem_blur(this)"></button>
 		<button class="button_action"><img src="images/button_delete.png" alt="Удалить"></button>
 		<button class="button_action"><img src="images/button_refresh.png" alt="Обновить" onclick="refreshMain()"></button>
+		<button class="button_action"><img src="images/button_refresh.png" alt="Обновить из БД" onclick="refreshMainDB()"></button>
 		<button class="button_action"><img src="images/button_filter.png" alt="Фильтр"></button>
 		<button class="button_action"><img src="images/button_print.png" alt="Печать"></button>
 		<button class="button_action"><img src="images/button_view.png" alt="Просмотр"></button>
