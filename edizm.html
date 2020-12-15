@@ -2,6 +2,7 @@
 <html>
  <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="images/gelicon_icon.png" type="image/x-icon">
 	<title>Единицы измерения</title>
   <style type="text/css">
 	.body {
@@ -9,7 +10,6 @@
 	}
 	.header { /* Верхняя часть с заголовком */
 		1height: 25px;
-		background: #e3e8cc; /* Цвет фона */
 		padding: 5px; /* Поля */
 		border: solid 1px red; /* Параметры рамки */
 		background: #e3e8cc; /* Цвет фона */
@@ -43,49 +43,69 @@
 		1min-height: 20px;
 	}
 	.main_menu { /* Главное меню */
-		1height: 20px;
 		background: LightGray; 
-		1overflow: hidden; /* Отменяем действие float */
 		min-height: 20px;
 	}
-	.dropdown {
+	.dropdown { /* Элемент главного меню (заголовок-кнопка и выпадающий список) */ 
 		position: relative;
 		display: inline-block;
 	}
-	.dropbtn {
+	.dropbtn { /* Кнопка-команда в строчке главного меню */
 		background-color: LightCyan;
 		padding: 4px;
 		border: none;
 	}
-	.dropdown_content {
+	.dropdown_content { /* Выпадающий прямоугольник элемента главного меню */
+		display: none;
+		position: absolute;
+		background-color: #f1f1f1;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		1z-index: 1;
+	}
+	.dropdown_content a {
+		color: black;
+		padding: 4px 10px;
+		text-decoration: none; /* Отменяем подчеркивание у ссылки */
+		display: block;
+	}
+	.dropdown_content a:hover {background-color: #ddd;} /* Подсвечиваем пункт */
+	.dropdown:hover .dropdown_content {display: block;}
+	.dropdown:hover .dropbtn {1background-color: Cyan;}
+
+	.dropdown1 { 
+		1position: relative;
+		1display: inline-block;
+	}
+
+	.dropbtn1 { 
+		position: relative;
+		1float: right;
+	}
+
+	.dropdown_content1 { /* Выпадающий прямоугольник элемента главного меню */
 		display: none;
 		position: absolute;
 		background-color: #f1f1f1;
 		min-width: 160px;
 		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 		z-index: 1;
+		float: right;
+		top:0px;
+		left:100%;
 	}
-	.dropdown_content a {
-		color: black;
-		padding: 4px 10px;
-		text-decoration: none;
-		display: block;
-	}
-	.dropdown_content a:hover {background-color: #ddd;}
-	.dropdown:hover .dropdown_content {display: block;}
-	.dropdown:hover .dropbtn {background-color: Cyan;}
+	.dropdown1:hover .dropdown_content1 {display: block;}
+
 	.global_menu ul {
 		list-style: none; /*убираем маркеры списка*/
 		margin: 0; /*убираем верхнее и нижнее поле, равное 1em*/
 		padding-left: 0; /*убираем левый отступ, равный 40px*/
-		1overflow: hidden;
 	}
 	.global_menu a {
 		text-decoration: none; /*убираем подчеркивание текста ссылок*/
 		color: white;
 	}
 	.global_menu li {
-		1display: inline;
 		display: inline-block;
 		1float: left;
 	}
@@ -111,6 +131,61 @@
 		background: yellow; /* Цвет фона */
 		width: 400px;
 	}
+	.PanelButton { /* Панель кнопок-действий */
+		height: 50px;
+		background: LightSkyBlue; 
+		border: solid 1px red;
+	}
+	.button_action { /* Кнопка-действие */
+		height: 100%;
+		background: LightCyan;
+		width: 50px;
+		border: solid 1px black;;
+		vertical-align: middle;
+		padding: 0;
+		margin: 0;
+		float:left;
+	}
+	.button_action:hover { background: PowderBlue; } /* при наведении курсора мышки */
+	.button_action:active { background: DeepSkyBlue; } /* при нажатии */
+	.content_panel {
+		min-height: 300px;
+		background: Lime; 
+	}
+	.main_table_panel { /* Панель основной таблицы */
+		min-height: 100px;
+		background: Linen; 
+		border: solid 1px red;
+	}
+	.master_table { /* Мастер таблица */
+		text-align: left;
+		width: 100%;
+		border: 1;
+		background: Ivory;
+		border-collapse: collapse; /* Убираем двойные границы между ячейками */
+	}
+	.master_table th{ /* Ячейки - заголовки */
+		background: FloralWhite;
+		border: 2px solid red;
+	}
+	.master_table td{ /* Ячейки */
+		background: FloralWhite;
+		border: 1px solid red;
+	}
+	.master_table td:nth-child(even){ /* Четные столбцы */
+		background-color: Cornsilk;
+	}
+	.master_table td:nth-child(3){ /* Третий столбец */
+		text-align: center;
+	}
+	.master_table tr td:nth-child(odd){ /* Нечетные столбцы */
+		background-color: Bisque;
+	}
+	.master_table caption { 
+		caption-side: top; /* Заголовок над таблицей */
+		text-align: left;
+		font-size: 24px;
+    }
  </style> 
   <script>
 	function footer_message_boxText(msg) {
@@ -144,12 +219,79 @@
 		document.getElementById("menu_analiz").addEventListener("click", buttonAnalizClick);
 	});
 	function refreshMain() {
+		footer_message_boxText('Обновление...');
+		
+		var body = document.body;
+        var tbl  = document.createElement('table');
+		tbl.style.width  = '100%';
+		tbl.style.border = '1px solid black';
+		tbl.setAttribute("class","master_table");
+		//tbl.style.border-collapse = 'collapse'; // не работает почему-то
+		
+		var edizmArray = [
+			['ГК', 'ГК', 'Гигакалория'],
+			['квт.ч', 'квт.ч', 'Киловат, час'],
+			['л', 'литр', 'Литр'],
+			['м2', 'м2', 'Квадратный метр'],
+			['м3', 'м3', 'Кубический метр'],
+			['м', 'метр', 'Метр'],
+			['на 1 чел', 'на 1 чел', 'на 1 человека'],
+			['кг', 'кг', 'Килограмм'],
+			['т', 'тн', 'Тонна'],
+			['шт', 'штук', 'Штук']
+		];
+
+/*
+head = table.append("tr");
+    head.append("th").text("column_header_1");
+    head.append("th").text("column_header_2");
+*/
+
+/*
+		var tr = tbl.insertRow(); // Создаем строку-заголовок
+		//var th = tr.insertCell();
+		var th = tr.appendChild(document.createElement('th'));
+		th.innerHtml = '<b>th cell1</b>';
+		th = tr.insertCell();
+		th.appendChild(document.createTextNode('Обозначение'));
+		th = tr.insertCell();
+		th.appendChild(document.createTextNode('Наименование'));
+*/
+		
+		for (var i = 0; i < edizmArray.length; i++) { // Цикл по строкам
+			var tr = tbl.insertRow(); // Создаем строку
+			for (var j = 0; j < edizmArray[i].length; j++) {
+				var td = tr.insertCell();
+                td.appendChild(document.createTextNode(edizmArray[i][j]));
+                td.style.border = '1px solid black';
+			}
+		}
+		//body.appendChild(tbl);
+		var master_table = document.getElementById("master_table");
+		var main_table_panel = document.getElementById("main_table_panel");
+		var master_tableNew = main_table_panel.replaceChild(tbl, master_table);
+		
+		//document.getElementById("master_table").innerHTML = tbl;
+		//document.getElementById("master_table") = tbl;
+		
 		var current_datetime = new Date();
-		footer_message_boxText('Перевыбрано ' + current_datetime);
+		footer_message_boxText('Обновлено ' + current_datetime);
+		
 	};	
 	document.addEventListener("DOMContentLoaded", function() {
 		menu_item_refresh.addEventListener("click", refreshMain);
 	});
+	function menu_video_commonClick() {
+		footer_message_boxText('Обучающее видео общее');
+	};	
+	function menu_addClick() {
+		footer_message_boxText('Запись добавлена');
+		button_add.blur() /* Уберем фокус */
+	};	
+	function elem_blur(elem) {
+		elem.blur(); /* Эта строчка не работает почему то */
+		button_edit.blur();
+	}
   </script>
  </head>
  <body>
@@ -182,10 +324,10 @@
 		</ul>
 	</div>
 	<div class="main_menu">
-		<div class="dropdown">
-			<button class="dropbtn">Команды</button>
-			<div class="dropdown_content">
-				<a href="#">Добавить</a>
+		<div class="dropdown" id="dropdown_command">
+			<button class="dropbtn"  id="dropbtn_command">Команды</button>
+			<div class="dropdown_content" id="dropdown_content_command">
+				<a href="#" id="menu_add" onclick="menu_addClick()">Добавить</a>
 				<a href="#">Изменить</a>
 				<a href="#">Удалить</a>
 				<a id="menu_item_refresh" href="#">Обновить</a>
@@ -204,7 +346,14 @@
 		<div class="dropdown">
 			<button class="dropbtn">Справка</button>
 			<div class="dropdown_content">
-				<a href="#">Обучающее видео</a>
+				<div class="dropdown1">
+					<a href="#" class="dropbtn1">Обучающее видео</a>
+					<div class="dropdown_content1">
+						<a href="#" id="menu_video_common" onclick="menu_video_commonClick()">Общее</a>
+						<a href="#">Тонкости</a>
+						<a href="#">Разное</a>
+				</div>
+				</div>
 				<a href="#">Быстрый старт</a>
 				<a href="#">О программе</a>
 			</div>
@@ -213,6 +362,30 @@
 	<div id="footer">
 		<div id="footer_message_box">	
 			Геликон
+		</div>
+	</div>
+	<div class="PanelButton">
+		<button class="button_action" id="button_add"><img src="images/button_add.png" alt="Добавить" onclick="menu_addClick()" ></button>
+		<button class="button_action" id="button_edit"><img src="images/button_edit.png" alt="Изменить" onmouseout="elem_blur(this)"></button>
+		<button class="button_action"><img src="images/button_delete.png" alt="Удалить"></button>
+		<button class="button_action"><img src="images/button_refresh.png" alt="Обновить" onclick="refreshMain()"></button>
+		<button class="button_action"><img src="images/button_filter.png" alt="Фильтр"></button>
+		<button class="button_action"><img src="images/button_print.png" alt="Печать"></button>
+		<button class="button_action"><img src="images/button_view.png" alt="Просмотр"></button>
+	</div>
+	<div class="content_panel">
+		<div class="main_table_panel" id="main_table_panel">
+			<table class="master_table" id="master_table">
+				<caption>Единицы измерения</caption>
+				<tr><th>Код		</th><th>Обозначение</th><th>Наименование		</th></tr>
+				<tr><td>ГК		</td><td>ГК			</td><td>Гигакалория		</td></tr>
+				<tr><td>квт.ч	</td><td>квт.ч		</td><td>Киловат, час		</td></tr>
+				<tr><td>л		</td><td>литр		</td><td>Литр				</td></tr>
+				<tr><td>м2		</td><td>м2			</td><td>Квадратный метр	</td></tr>
+				<tr><td>м3		</td><td>м3			</td><td>Кубический метр	</td></tr>
+				<tr><td>м		</td><td>метр		</td><td>Метр				</td></tr>
+				<tr><td>на 1 чел</td><td>на 1 чел	</td><td>на 1 человека		</td></tr>
+			</table>
 		</div>
 	</div>
  </body>
